@@ -1,0 +1,42 @@
+#!/usr/bin/env ruby
+
+$LOAD_PATH << File.dirname(__FILE__) + '/../lib' if $0 == __FILE__
+require 'optparse'
+require 'avro2kafka'
+
+options = {}
+
+option_parser = OptionParser.new do |opts|
+  opts.banner = "Version #{Avro2Kafka::VERSION} of Avro2Kafka\n" \
+    "Usage: #{File.basename(__FILE__)} [options] [file]"
+
+  opts.on('-s', '--schema SCHEMA', 'A file containing the Avro schema. This value is required.') do |schema|
+    options[:schema] = schema
+  end
+
+  opts.on('-t', '--topic TOPIC', 'The Kafka topic to publish to. This value is required.') do |topic|
+    options[:topic] = topic
+  end
+
+  opts.on('-h', '--help', 'Prints help') do
+    puts opts
+    exit
+  end
+end
+
+option_parser.parse!
+
+begin
+  raise OptionParser::MissingArgument.new('--schema') if options[:schema].nil?
+  raise OptionParser::MissingArgument.new('--topic') if options[:topic].nil?
+
+  Avro2Kafka.new(options).publish
+rescue OptionParser::MissingArgument => ex
+  puts ex.message
+
+  puts option_parser
+rescue Exception => e
+  puts 'Uh oh, something went wrong!'
+  puts e.message
+  puts e.backtrace.join("\n")
+end
