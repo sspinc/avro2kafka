@@ -1,4 +1,4 @@
-# CSV2Avro
+# Avro2Kafka
 
 Publish data from Avro files to Kafka in JSON format
 
