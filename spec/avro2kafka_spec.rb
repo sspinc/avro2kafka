@@ -5,7 +5,8 @@ RSpec.describe Avro2Kafka do
     let(:options) do
       {
         schema: './spec/support/schema.avsc',
-        topic: 'kafka_topic'
+        broker: 'localhost:9092',
+        topic: 'feeds'
       }
     end
 
@@ -13,8 +14,8 @@ RSpec.describe Avro2Kafka do
       ARGV.replace ['./spec/support/data.avro']
     end
 
-    it 'should output greeting text' do
-      expect { Avro2Kafka.new(options).publish }.to output("Hello avro2kafka user!\n").to_stdout
+    it 'should output published text' do
+      expect { Avro2Kafka.new(options).publish }.to output("Avro file published\n").to_stdout
     end
   end
 end
