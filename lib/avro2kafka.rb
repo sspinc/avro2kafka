@@ -21,7 +21,7 @@ class Avro2Kafka
       json_records = JSONConverter.new(records).convert
       KafkaPublisher.new(kafka_broker, kafka_topic).publish(json_records)
     end
-    puts "Avro file published"
+    puts "Avro file published to #{kafka_topic} topic on #{kafka_broker}!"
   end
 
 end
