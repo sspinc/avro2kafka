@@ -15,8 +15,6 @@ RSpec.describe Avro2Kafka do
     before do
       ARGV.replace ['./spec/support/data.avro']
 
-      # De we need to set up the Kafka instance here?
-
       # Get the last 3 messages from the kafka topic
       @consumer = Poseidon::PartitionConsumer.new("test_consumer", "localhost", 9092,
                                                  "feeds", 0, -3)
@@ -29,7 +27,7 @@ RSpec.describe Avro2Kafka do
 
     it 'should publish to topic' do
       messages = @consumer.fetch
-      expect(messages.map { |message| JSON.parse(message.value) }).to eq(
+      expect(messages.map { |message| JSON.load(message.value) }).to eq(
         [
           { 'id'=> 1, 'name'=> 'dresses',     'description'=> 'Dresses' },
           { 'id'=> 2, 'name'=> 'female-tops', 'description'=> 'Female Tops' },
