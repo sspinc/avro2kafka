@@ -11,9 +11,8 @@ class Avro2Kafka
 
     def publish(records)
       records.each_slice(100) do |batch|
-        messages = []
-        batch.each do |record|
-          messages << Poseidon::MessageToSend.new(topic, record)
+        messages = batch.map do |record|
+          Poseidon::MessageToSend.new(topic, record)
         end
         producer.send_messages(messages)
       end
