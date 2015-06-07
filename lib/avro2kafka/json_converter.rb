@@ -10,7 +10,7 @@ class Avro2Kafka
     def convert
       Enumerator.new do |yielder|
         @records.each do |record|
-          yielder << JSON.pretty_generate(record)
+          yielder << record.to_json
         end
       end
     end
