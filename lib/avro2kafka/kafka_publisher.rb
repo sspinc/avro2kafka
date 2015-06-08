@@ -14,10 +14,10 @@ class Avro2Kafka
     def publish(records)
       records.each_slice(100) do |batch|
         messages = batch.map do |record|
-          message_key = keys.map { |key| JSON.load(record)[key] }.join
+          message_key = keys.map { |key| record[key] }.join
           require 'pry'
           binding.pry
-          Poseidon::MessageToSend.new(topic, record, message_key)
+          Poseidon::MessageToSend.new(topic, record.to_json, message_key)
         end
         producer.send_messages(messages)
       end
