@@ -33,7 +33,7 @@ The Kafka broker, eg. localhost:9092. This value is required.
 The Kafka topic to publish to. This value is required.
 
 `-k, --key KEY`
-The fields in the avro that will act as keys for Kafka. If not supplied, messages will not be partioned, hence log compaction won't work.
+The fields in the avro that will act as keys for Kafka. If not supplied, unique and undefined keys will be generated, hence log compaction won't work.
 
 `-h, --help`
 Prints help
