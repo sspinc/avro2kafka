@@ -4,14 +4,8 @@ require 'poseidon'
 RSpec.describe Avro2Kafka::KafkaPublisher do
   describe '#publish' do
     let(:broker) { 'localhost:9092' }
-
-    let(:topic) do
-      'feeds'
-    end
-
-    let(:messages) do
-      %w[message1, message2, message3]
-    end
+    let(:topic) { 'feeds' }
+    let(:messages) { %w[message1, message2, message3] }
 
     it 'should call publisher#send_messages' do
       kafka_publisher = Avro2Kafka::KafkaPublisher.new(broker, topic)

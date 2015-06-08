@@ -3,9 +3,15 @@ require 'avro'
 
 RSpec.describe Avro2Kafka::AvroReader do
   describe '#read' do
+    let(:path) { './spec/support/data.avro' }
+
     before do
-      @io = File.open('./spec/support/data.avro', 'r')
+      @io = File.open(path, 'r')
       @avro = Avro2Kafka::AvroReader.new(@io).read
+    end
+
+    after do
+      @io.close
     end
 
     it 'should return an Enumerator object' do
@@ -26,8 +32,5 @@ RSpec.describe Avro2Kafka::AvroReader do
       )
     end
 
-    after do
-      @io.close
-    end
   end
 end
