@@ -7,7 +7,8 @@ RSpec.describe Avro2Kafka do
     let(:options) do
       {
         broker: 'localhost:9092',
-        topic: 'feeds'
+        topic: 'feeds',
+        key: 'name, id'
       }
     end
 

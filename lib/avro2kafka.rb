@@ -1,6 +1,5 @@
 require 'avro2kafka/version'
 require 'avro2kafka/avro_reader'
-require 'avro2kafka/json_converter'
 require 'avro2kafka/kafka_publisher'
 
 class Avro2Kafka
