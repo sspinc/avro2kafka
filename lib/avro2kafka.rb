@@ -14,11 +14,14 @@ class Avro2Kafka
     @options = options
   end
 
+  def reader
+    ARGF.lineno = 0
+    ARGF
+  end
+
   def publish
-    File.open(input_path, 'r') do |file|
-      records = AvroReader.new(file).read
-      KafkaPublisher.new(kafka_broker, kafka_topic, kafka_key).publish(records)
-    end
+    records = AvroReader.new(reader).read
+    KafkaPublisher.new(kafka_broker, kafka_topic, kafka_key).publish(records)
     puts "Avro file published to #{kafka_topic} topic on #{kafka_broker}!"
   end
 
