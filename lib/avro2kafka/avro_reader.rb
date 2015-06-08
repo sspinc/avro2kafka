@@ -10,12 +10,7 @@ class Avro2Kafka
     end
 
     def read
-      records = Avro::DataFile::Reader.new(io, @reader)
-      Enumerator.new do |yielder|
-        records.each do |record|
-          yielder << record
-        end
-      end
+      Avro::DataFile::Reader.new(io, @reader).to_enum
     end
   end
 end
