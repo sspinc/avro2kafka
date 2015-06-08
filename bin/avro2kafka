@@ -18,6 +18,10 @@ option_parser = OptionParser.new do |opts|
     options[:topic] = topic
   end
 
+  opts.on('-k', '--key KEY', 'The fields in the avro that will act as keys for Kafka.') do |key|
+    options[:key] = key
+  end
+
   opts.on('-h', '--help', 'Prints help') do
     puts opts
     exit
