@@ -16,7 +16,8 @@ class Avro2Kafka
   end
 
   def publish
-      records = AvroReader.new(input_path, schema_path).read
+    File.open(input_path, 'r') do |file|
+      records = AvroReader.new(file, schema_path).read
       json_records = JSONConverter.new(records).convert
       KafkaPublisher.new(kafka_broker, kafka_topic).publish(json_records)
     end
