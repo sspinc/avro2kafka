@@ -4,10 +4,9 @@ class Avro2Kafka
   class AvroReader
     attr_reader :io
 
-    def initialize(io, schema_path)
+    def initialize(io)
       @io = io
-      schema = Avro::Schema.parse(File.read(schema_path))
-      @reader = Avro::IO::DatumReader.new(nil, schema)
+      @reader = Avro::IO::DatumReader.new()
     end
 
     def read

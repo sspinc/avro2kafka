@@ -3,17 +3,13 @@ require 'avro'
 
 RSpec.describe Avro2Kafka::AvroReader do
   describe '#read' do
-    let(:schema_path) do
-      './spec/support/schema.avsc'
-    end
-
     before do
       @io = File.open('./spec/support/data.avro', 'r')
-      @avro = Avro2Kafka::AvroReader.new(@io, schema_path).read
+      @avro = Avro2Kafka::AvroReader.new(@io).read
     end
 
-    it 'should return an Avro::DataFile::Reader object' do
-      expect(@avro).to be_an_instance_of Avro::DataFile::Reader
+    it 'should return an Enumerator object' do
+      expect(@avro).to be_an_instance_of Enumerator
     end
 
     it 'should return 3 rows' do

@@ -10,10 +10,6 @@ option_parser = OptionParser.new do |opts|
   opts.banner = "Version #{Avro2Kafka::VERSION} of Avro2Kafka\n" \
     "Usage: #{File.basename(__FILE__)} [options] [file]"
 
-  opts.on('-s', '--schema SCHEMA', 'A file containing the Avro schema. This value is required.') do |schema|
-    options[:schema] = schema
-  end
-
   opts.on('-b', '--broker BROKER', 'The Kafka broker, eg. localhost:9092. This value is required.') do |broker|
     options[:broker] = broker
   end
@@ -31,7 +27,6 @@ end
 option_parser.parse!
 
 begin
-  raise OptionParser::MissingArgument.new('--schema') if options[:schema].nil?
   raise OptionParser::MissingArgument.new('--broker') if options[:broker].nil?
   raise OptionParser::MissingArgument.new('--topic') if options[:topic].nil?
 

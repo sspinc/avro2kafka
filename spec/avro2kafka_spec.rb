@@ -6,7 +6,6 @@ RSpec.describe Avro2Kafka do
   describe '#publish' do
     let(:options) do
       {
-        schema: './spec/support/schema.avsc',
         broker: 'localhost:9092',
         topic: 'feeds'
       }
