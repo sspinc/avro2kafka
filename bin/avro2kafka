@@ -10,12 +10,16 @@ option_parser = OptionParser.new do |opts|
   opts.banner = "Version #{Avro2Kafka::VERSION} of Avro2Kafka\n" \
     "Usage: #{File.basename(__FILE__)} [options] [file]"
 
-  opts.on('-s', '--schema SCHEMA', 'A file containing the Avro schema. This value is required.') do |schema|
-    options[:schema] = schema
+  opts.on('-b', '--broker BROKER', 'The Kafka broker, eg. localhost:9092. This value is required.') do |broker|
+    options[:broker] = broker
   end
 
   opts.on('-t', '--topic TOPIC', 'The Kafka topic to publish to. This value is required.') do |topic|
     options[:topic] = topic
+  end
+
+  opts.on('-k', '--key KEY', 'The fields in the avro that will act as keys for Kafka.') do |key|
+    options[:key] = key
   end
 
   opts.on('-h', '--help', 'Prints help') do
@@ -27,7 +31,7 @@ end
 option_parser.parse!
 
 begin
-  raise OptionParser::MissingArgument.new('--schema') if options[:schema].nil?
+  raise OptionParser::MissingArgument.new('--broker') if options[:broker].nil?
   raise OptionParser::MissingArgument.new('--topic') if options[:topic].nil?
 
   Avro2Kafka.new(options).publish
