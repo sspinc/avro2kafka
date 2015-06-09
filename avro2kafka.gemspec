@@ -25,4 +25,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "bump", "~> 0.5"
 
   spec.add_dependency "avro", "~> 1.7"
+  spec.add_dependency "poseidon", "~> 0.0.5"
 end

@@ -1,11 +1,14 @@
 require 'spec_helper'
+require 'poseidon'
+require 'json'
 
 RSpec.describe Avro2Kafka do
   describe '#publish' do
     let(:options) do
       {
-        schema: './spec/support/schema.avsc',
-        topic: 'kafka_topic'
+        broker: 'localhost:9092',
+        topic: 'feeds',
+        key: 'name, id'
       }
     end
 
@@ -13,8 +16,5 @@ RSpec.describe Avro2Kafka do
       ARGV.replace ['./spec/support/data.avro']
     end
 
-    it 'should output greeting text' do
-      expect { Avro2Kafka.new(options).publish }.to output("Hello avro2kafka user!\n").to_stdout
-    end
   end
 end

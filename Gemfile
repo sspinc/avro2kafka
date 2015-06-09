@@ -1,4 +1,4 @@
 source 'https://rubygems.org'
 
-# Specify your gem's dependencies in csv2avro.gemspec
+# Specify your gem's dependencies in avro2kafka.gemspec
 gemspec

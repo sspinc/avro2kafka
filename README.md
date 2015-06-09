@@ -1,4 +1,4 @@
-# CSV2Avro
+# Avro2Kafka
 
 Publish data from Avro files to Kafka in JSON format
 
@@ -20,7 +20,23 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+```
+Usage: avro2kafka [options] [file]
+```
+
+### Options
+
+`-b, --broker BROKER`
+The Kafka broker, eg. localhost:9092. This value is required.
+
+`-t, --topic TOPIC`
+The Kafka topic to publish to. This value is required.
+
+`-k, --key KEY`
+The fields in the avro that will act as keys for Kafka. If not supplied, unique and undefined keys will be generated, hence log compaction won't work.
+
+`-h, --help`
+Prints help
 
 ## Contributing
 
