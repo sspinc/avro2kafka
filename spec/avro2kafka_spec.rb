@@ -41,7 +41,7 @@ RSpec.describe Avro2Kafka do
     end
 
     describe '#extra_data' do
-      it 'returns a key value pairs' do
+      it 'parses data into key-value pairs' do
         expect(avro2kafka.extra_data).to eq({ 'x' => 'y', 'alpha' => 'omega' })
       end
     end
