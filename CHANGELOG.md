@@ -7,7 +7,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 
+  * --data option for extra data to be added to the message payload
+
 ### Changed
+
+  * option --broker renamed to --broker-list and accpeting a comma separated list of brokers
 
 ## 0.1.0 (2015-06-09)
 Initial release
