@@ -22,6 +22,11 @@ option_parser = OptionParser.new do |opts|
     options[:key] = key
   end
 
+  opts.on('-d', '--data DATA', 'Extra data fields to add to the kafka payload. Format: key=value') do |data|
+    options[:data] ||= []
+    options[:data] << data
+  end
+
   opts.on('-h', '--help', 'Prints help') do
     puts opts
     exit
