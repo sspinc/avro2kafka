@@ -6,11 +6,11 @@ require 'avro2kafka/version'
 Gem::Specification.new do |spec|
   spec.name          = "avro2kafka"
   spec.version       = Avro2Kafka::VERSION
-  spec.authors       = ["Peter Marton"]
-  spec.email         = ["martonpe@secretsaucepartners.com"]
+  spec.authors       = ["Peter Marton", "Tamas Michelberger", "Gabor Ratky"]
+  spec.email         = ["martonpe@secretsaucepartners.com", "tomi@secretsaucepartners.com", "gabor@secretsaucepartners.com"]
   spec.summary       = %q{Publish Avro files to Kafka}
   spec.description   = %q{Publish Avro files to Kafka in JSON format}
-  spec.homepage      = ""
+  spec.homepage      = "https://github.com/sspinc/avro2kafka"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")
@@ -24,6 +24,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "pry", "~> 0.10"
   spec.add_development_dependency "bump", "~> 0.5"
 
-  spec.add_dependency "avro", "~> 1.7"
-  spec.add_dependency "poseidon", "~> 0.0.5"
+  spec.add_runtime_dependency "avro", "~> 1.7"
+  spec.add_runtime_dependency "poseidon", "~> 0.0.5"
 end
