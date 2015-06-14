@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["martonpe@secretsaucepartners.com"]
   spec.summary       = %q{Publish Avro files to Kafka}
   spec.description   = %q{Publish Avro files to Kafka in JSON format}
-  spec.homepage      = ""
+  spec.homepage      = "https://github.com/sspinc/avro2kafka"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")
