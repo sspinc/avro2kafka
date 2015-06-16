@@ -2,7 +2,7 @@
 
 Publish data from Avro files to Kafka in JSON format
 
-[Travis](https://api.travis-ci.org/sspinc/avro2kafka.svg?branch=master)
+![Travis](https://api.travis-ci.org/sspinc/avro2kafka.svg?branch=master)
 
 ## Installation
 
