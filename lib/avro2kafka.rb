@@ -16,7 +16,7 @@ class Avro2Kafka
   def publish
     records = AvroReader.new(reader).read
     KafkaPublisher.new(**kafka_options).publish(records)
-    puts "Avro file published to #{topic} topic on #{broker_list}!"
+    $stderr.puts "Avro file published to #{topic} topic on #{broker_list}!"
   end
 
   def topic
