@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    avro2kafka (0.2.0)
+    avro2kafka (0.3.0)
       avro (~> 1.7)
       poseidon (~> 0.0.5)
 
