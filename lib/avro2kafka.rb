@@ -30,6 +30,7 @@ class Avro2Kafka
 
     Avro2Kafka.logger.event('finished_publishing', filename: input_filename, topic: topic, data: extra_data)
                      .monitored("Avro2Kafka finished publishing #{input_filename}", '')
+                     .metric('lines_processed', records.count)
                      .info
   end
 
