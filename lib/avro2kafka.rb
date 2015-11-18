@@ -12,7 +12,7 @@ class Avro2Kafka
   end
 
   def initialize(options)
-    @input_path = ARGV.first
+    @path = ARGV.first
     @options = options
   end
 
@@ -22,20 +22,20 @@ class Avro2Kafka
 
   def publish
     Avro2Kafka.logger.event('started_publishing', filename: input_filename, topic: topic, data: extra_data)
-                     .monitored("Avro2Kafka started publishing #{input_filename}", '')
+                     .monitored("Started publishing #{filename}", "Started publishing #{filename} to the #{topic} Kafka topic.")
                      .info("Started publishing #{filename}")
 
     records = AvroReader.new(reader).read
     KafkaPublisher.new(**kafka_options).publish(records)
 
     Avro2Kafka.logger.event('finished_publishing', filename: input_filename, topic: topic, data: extra_data)
-                     .monitored("Avro2Kafka finished publishing #{input_filename}", '')
+                     .monitored("Finished publishing #{filename}", "Finished publishing #{filename} to the #{topic} Kafka topic.")
                      .metric('lines_processed', records.count)
                      .info("Finished publishing #{filename}")
   end
 
-  def input_filename
-    File.basename(@input_path)
+  def filename
+    File.basename(@path)
   end
 
   def topic
