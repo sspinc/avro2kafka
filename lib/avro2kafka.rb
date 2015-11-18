@@ -23,7 +23,7 @@ class Avro2Kafka
   def publish
     Avro2Kafka.logger.event('started_publishing', filename: input_filename, topic: topic, data: extra_data)
                      .monitored("Avro2Kafka started publishing #{input_filename}", '')
-                     .info
+                     .info("Started publishing #{filename}")
 
     records = AvroReader.new(reader).read
     KafkaPublisher.new(**kafka_options).publish(records)
@@ -31,7 +31,7 @@ class Avro2Kafka
     Avro2Kafka.logger.event('finished_publishing', filename: input_filename, topic: topic, data: extra_data)
                      .monitored("Avro2Kafka finished publishing #{input_filename}", '')
                      .metric('lines_processed', records.count)
-                     .info
+                     .info("Finished publishing #{filename}")
   end
 
   def input_filename
