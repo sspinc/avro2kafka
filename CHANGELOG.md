@@ -3,6 +3,16 @@
 All notable changes to this project are documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.4.0 (2015-11-18)
+Structured logging
+
+### Changed
+* Log in JSON format using Logr (https://github.com/sspinc/logr)
+
+### Added
+* New started_publishing and finished_publishing events
+* New lines_processed metric
+
 ## 0.3.0 (2015-08-27)
 Improved error reporting
 
