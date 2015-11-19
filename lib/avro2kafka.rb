@@ -2,10 +2,17 @@ require 'avro2kafka/version'
 require 'avro2kafka/avro_reader'
 require 'avro2kafka/kafka_publisher'
 
+require 'logr'
+
 class Avro2Kafka
   attr_reader :options
 
+  def self.logger
+    @logger ||= Logr::Logger.new('avro2kafka')
+  end
+
   def initialize(options)
+    @path = ARGV.first
     @options = options
   end
 
@@ -14,9 +21,21 @@ class Avro2Kafka
   end
 
   def publish
+    Avro2Kafka.logger.event('started_publishing', { filename: filename, topic: topic }.merge(extra_data))
+                     .monitored("Started publishing #{filename}", "Started publishing #{filename} to the #{topic} Kafka topic.")
+                     .info("Started publishing #{filename}")
+
     records = AvroReader.new(reader).read
     KafkaPublisher.new(**kafka_options).publish(records)
-    $stderr.puts "Avro file published to #{topic} topic on #{broker_list}!"
+
+    Avro2Kafka.logger.event('finished_publishing', { filename: filename, topic: topic }.merge(extra_data))
+                     .monitored("Finished publishing #{filename}", "Finished publishing #{filename} to the #{topic} Kafka topic.")
+                     .metric('lines_processed', records.count)
+                     .info("Finished publishing #{filename}")
+  end
+
+  def filename
+    File.basename(@path)
   end
 
   def topic

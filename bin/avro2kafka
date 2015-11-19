@@ -41,10 +41,12 @@ begin
 
   Avro2Kafka.new(options).publish
 rescue OptionParser::MissingArgument => ex
+  Avro2Kafka.logger.fatal(ex.message)
   $stderr.puts ex.message
   $stderr.puts option_parser
   exit 2
 rescue Exception => e
+  Avro2Kafka.logger.fatal("processing failed: #{e.message}")
   $stderr.puts 'Uh oh, something went wrong!'
   $stderr.puts e.message
   $stderr.puts e.backtrace.join("\n")
