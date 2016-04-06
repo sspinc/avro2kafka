@@ -3,6 +3,12 @@
 All notable changes to this project are documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.4.1 (2016-04-06)
+Bump Logr version to 0.2.0
+
+### Changed
+* Logr version to 0.2.0
+
 ## 0.4.0 (2015-11-18)
 Structured logging
 
